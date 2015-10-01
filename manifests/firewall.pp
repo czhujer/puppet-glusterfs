@@ -15,7 +15,7 @@ class glusterfs::firewall (
   }
 
   if !empty($sugarcrmstack::glusterfs_peers) {
-    galera::firewall::source_ip { $sugarcrmstack::glusterfs_peers: }
+    insert_rule { $sugarcrmstack::glusterfs_peers: }
   }
   else {
     warning { "no glusterfs peers defined..": }
