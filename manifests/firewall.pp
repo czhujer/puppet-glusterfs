@@ -6,12 +6,15 @@ class glusterfs::firewall (
 ) {
 
   define insert_rule ( $host = $title){
+
+    unless $::hostname in $title { 
       firewall { "111 glusterfs-server accept tcp from ${host}":
         proto  => 'tcp',
         dport  => ['24007'],
         source => $host,
         action => accept,
       }
+    }
   }
 
   if !empty($sugarcrmstack::glusterfs_peers) {
