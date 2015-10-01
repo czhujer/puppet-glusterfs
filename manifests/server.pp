@@ -15,8 +15,14 @@
 #  }
 #
 class glusterfs::server (
+  $configure_firewall = false,
   $peers = []
 ) {
+
+  if $configure_firewall {
+    class { 'glusterfs::firewall':
+    }
+  }
 
   # Main package and service it provides
   package { 'glusterfs-server': ensure => installed }
