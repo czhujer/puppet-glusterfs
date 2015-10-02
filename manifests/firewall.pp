@@ -8,12 +8,19 @@ class glusterfs::firewall (
   define insert_rule ( $host = $title){
 
     unless $::hostname in $title { 
-      firewall { "111 glusterfs-server accept tcp from ${host}":
+      firewall { "120 glusterfs-server accept tcp from ${host}":
         proto  => 'tcp',
-        dport  => ['24007'],
+        dport  => ['2049\', '24007', '49152 - 49155',],
         source => $host,
         action => accept,
       }
+
+      firewall { "111 glusterfs-server mapper accept tcp from ${host}":
+        dport  => ['111',],
+        source => $host,
+        action => accept,
+      }
+
     }
   }
 
