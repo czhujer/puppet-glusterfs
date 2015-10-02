@@ -10,7 +10,7 @@ class glusterfs::firewall (
     unless $::hostname in $title { 
       firewall { "120 glusterfs-server accept tcp from ${host}":
         proto  => 'tcp',
-        dport  => ['2049\', '24007', '49152 - 49155',],
+        dport  => ['2049', '24007', '49152 - 49155',],
         source => $host,
         action => accept,
       }
