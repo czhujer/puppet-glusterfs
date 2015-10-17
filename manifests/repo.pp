@@ -3,7 +3,7 @@
 # Installs the appropriate repositories from which glusterfs packages
 # can be installed
 #
-# ORIGINAL INFO:
+# ORIGINAL AUTHOR:
 #
 # GlusterFS module by James
 # Copyright (C) 2010-2013+ James Shubin
@@ -13,9 +13,12 @@
 class glusterfs::repo(
   $enabled = "0",
   $version = "3.4",
+  $name = "glusterfs",
 ) {
 
   if str2bool($enabled) {
+
+    $base = "http://download.gluster.org/pub/gluster/glusterfs/"
 
     if "${version}" == '' {
 	# latest
