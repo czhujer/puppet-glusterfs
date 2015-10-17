@@ -83,7 +83,7 @@ class glusterfs::repo(
 	fail("Architecture: '${architecture}' not yet supported.")
     }
 
-    $base_arch = "${base_os}epel-$releasever/"
+    $base_arch = "${base_os}epel-\$releasever/"
 
     $gpgkey = "${base_os}pub.key"
 
